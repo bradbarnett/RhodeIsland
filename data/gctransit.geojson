@@ -1,0 +1,140 @@
+{
+"type": "FeatureCollection",
+                                                                                
+"features": [
+{ "type": "Feature", "id": 0, "properties": { "NAME": "PASCOAG", "NAME_1": "BURRILLVILLE", "Transit": "railinterstate" }, "geometry": { "type": "Point", "coordinates": [ -71.70228421537108, 41.955709415863588 ] } }
+,
+{ "type": "Feature", "id": 1, "properties": { "NAME": "HARRISVILLE", "NAME_1": "BURRILLVILLE", "Transit": "road" }, "geometry": { "type": "Point", "coordinates": [ -71.677144935770073, 41.966227783570616 ] } }
+,
+{ "type": "Feature", "id": 2, "properties": { "NAME": "NASONVILLE", "NAME_1": "BURRILLVILLE", "Transit": "interstate" }, "geometry": { "type": "Point", "coordinates": [ -71.615356417255398, 41.97945089312973 ] } }
+,
+{ "type": "Feature", "id": 3, "properties": { "NAME": "CHEPACHET", "NAME_1": "GLOCESTER", "Transit": "road" }, "geometry": { "type": "Point", "coordinates": [ -71.671245592339162, 41.915027944764169 ] } }
+,
+{ "type": "Feature", "id": 4, "properties": { "NAME": "SUMMIT", "NAME_1": "COVENTRY", "Transit": "road" }, "geometry": { "type": "Point", "coordinates": [ -71.693377459493021, 41.692776022681244 ] } }
+,
+{ "type": "Feature", "id": 5, "properties": { "NAME": "ALTON", "NAME_1": "RICHMOND", "Transit": "railinterstate" }, "geometry": { "type": "Point", "coordinates": [ -71.721713295194988, 41.437685159658699 ] } }
+,
+{ "type": "Feature", "id": 6, "properties": { "NAME": "WESTERLY", "NAME_1": "WESTERLY", "Transit": "railinterstate" }, "geometry": { "type": "Point", "coordinates": [ -71.831079493713858, 41.377429361210815 ] } }
+,
+{ "type": "Feature", "id": 7, "properties": { "NAME": "CROSS MILLS", "NAME_1": "CHARLESTOWN", "Transit": "interstate" }, "geometry": { "type": "Point", "coordinates": [ -71.642474880544412, 41.383235449018422 ] } }
+,
+{ "type": "Feature", "id": 8, "properties": { "NAME": "CAROLINA", "NAME_1": "CHARLES\/RICHMOND", "Transit": "rail" }, "geometry": { "type": "Point", "coordinates": [ -71.661099564086598, 41.454361813537446 ] } }
+,
+{ "type": "Feature", "id": 9, "properties": { "NAME": "SHANNOCK", "NAME_1": "RICHMOND", "Transit": "rail" }, "geometry": { "type": "Point", "coordinates": [ -71.637535153784782, 41.448154892627336 ] } }
+,
+{ "type": "Feature", "id": 10, "properties": { "NAME": "SLATERSVILLE", "NAME_1": "NORTH SMITHFIELD", "Transit": "interstate" }, "geometry": { "type": "Point", "coordinates": [ -71.580570432579322, 41.999794831823749 ] } }
+,
+{ "type": "Feature", "id": 11, "properties": { "NAME": "GEORGIAVILLE", "NAME_1": "SMITHFIELD", "Transit": "interstate" }, "geometry": { "type": "Point", "coordinates": [ -71.510449412464084, 41.886814473648109 ] } }
+,
+{ "type": "Feature", "id": 12, "properties": { "NAME": "GREENVILLE", "NAME_1": "SMITHFIELD", "Transit": "interstate" }, "geometry": { "type": "Point", "coordinates": [ -71.552495078070251, 41.871360139570179 ] } }
+,
+{ "type": "Feature", "id": 13, "properties": { "NAME": "NORTH SCITUATE", "NAME_1": "SCITUATE", "Transit": "road" }, "geometry": { "type": "Point", "coordinates": [ -71.587340580046344, 41.831885679564103 ] } }
+,
+{ "type": "Feature", "id": 14, "properties": { "NAME": "HOPE", "NAME_1": "SCITUATE", "Transit": "road" }, "geometry": { "type": "Point", "coordinates": [ -71.56274386124187, 41.733078337645949 ] } }
+,
+{ "type": "Feature", "id": 15, "properties": { "NAME": "ARCTIC", "NAME_1": "WEST WARWICK", "Transit": "interstate" }, "geometry": { "type": "Point", "coordinates": [ -71.524255340830052, 41.704107140112825 ] } }
+,
+{ "type": "Feature", "id": 16, "properties": { "NAME": "WICKFORD JCT", "NAME_1": "NORTH KINGSTOWN", "Transit": "railinterstate" }, "geometry": { "type": "Point", "coordinates": [ -71.490828152387337, 41.577915740249075 ] } }
+,
+{ "type": "Feature", "id": 17, "properties": { "NAME": "LAFAYETTE", "NAME_1": "NORTH KINGSTOWN", "Transit": "railinterstate" }, "geometry": { "type": "Point", "coordinates": [ -71.481557554508953, 41.571861468231724 ] } }
+,
+{ "type": "Feature", "id": 18, "properties": { "NAME": "WEST KINGSTON", "NAME_1": "SOUTH KINGSTOWN", "Transit": "rail" }, "geometry": { "type": "Point", "coordinates": [ -71.558125271680495, 41.484098326233088 ] } }
+,
+{ "type": "Feature", "id": 19, "properties": { "NAME": "PEACE DALE", "NAME_1": "SOUTH KINGSTOWN", "Transit": "rail" }, "geometry": { "type": "Point", "coordinates": [ -71.500285170861531, 41.451020891177407 ] } }
+,
+{ "type": "Feature", "id": 20, "properties": { "NAME": "WAKEFIELD", "NAME_1": "SOUTH KINGSTOWN", "Transit": "rail" }, "geometry": { "type": "Point", "coordinates": [ -71.498709925790308, 41.438851298429505 ] } }
+,
+{ "type": "Feature", "id": 21, "properties": { "NAME": "MATUNUCK", "NAME_1": "SOUTH KINGSTOWN", "Transit": "roadferry" }, "geometry": { "type": "Point", "coordinates": [ -71.543012752089268, 41.374000417375065 ] } }
+,
+{ "type": "Feature", "id": 22, "properties": { "NAME": "HAMILTON", "NAME_1": "NORTH KINGSTOWN", "Transit": "interstate" }, "geometry": { "type": "Point", "coordinates": [ -71.441438683218905, 41.548610917220678 ] } }
+,
+{ "type": "Feature", "id": 23, "properties": { "NAME": "ALLENTON", "NAME_1": "NORTH KINGSTOWN", "Transit": "interstate" }, "geometry": { "type": "Point", "coordinates": [ -71.467972512753832, 41.544058588866939 ] } }
+,
+{ "type": "Feature", "id": 24, "properties": { "NAME": "WICKFORD", "NAME_1": "NORTH KINGSTOWN", "Transit": "railinterstate" }, "geometry": { "type": "Point", "coordinates": [ -71.452322334301172, 41.571300544635875 ] } }
+,
+{ "type": "Feature", "id": 25, "properties": { "NAME": "APPONAUG", "NAME_1": "WARWICK", "Transit": "railinterstate" }, "geometry": { "type": "Point", "coordinates": [ -71.45998099106869, 41.698716229292124 ] } }
+,
+{ "type": "Feature", "id": 26, "properties": { "NAME": "NATICK", "NAME_1": "WEST WARWICK", "Transit": "interstate" }, "geometry": { "type": "Point", "coordinates": [ -71.491883561884606, 41.71952154590133 ] } }
+,
+{ "type": "Feature", "id": 27, "properties": { "NAME": "KNIGHTSVILLE", "NAME_1": "CRANSTON", "Transit": "interstate" }, "geometry": { "type": "Point", "coordinates": [ -71.464897753816103, 41.782611540282041 ] } }
+,
+{ "type": "Feature", "id": 28, "properties": { "NAME": "ROLFE SQUARE", "NAME_1": "CRANSTON", "Transit": "interstate" }, "geometry": { "type": "Point", "coordinates": [ -71.437409840971824, 41.77926746194872 ] } }
+,
+{ "type": "Feature", "id": 29, "properties": { "NAME": "PAWTUXET", "NAME_1": "WARWICK", "Transit": "railroad" }, "geometry": { "type": "Point", "coordinates": [ -71.391467057487858, 41.76291056666566 ] } }
+,
+{ "type": "Feature", "id": 30, "properties": { "NAME": "THORNTON", "NAME_1": "JOHNSTON", "Transit": "interstate" }, "geometry": { "type": "Point", "coordinates": [ -71.482989470498822, 41.795910801008077 ] } }
+,
+{ "type": "Feature", "id": 31, "properties": { "NAME": "MANTON", "NAME_1": "JOHNSTON", "Transit": "interstate" }, "geometry": { "type": "Point", "coordinates": [ -71.474361409552486, 41.833188663919088 ] } }
+,
+{ "type": "Feature", "id": 32, "properties": { "NAME": "GRANITEVILLE", "NAME_1": "JOHNSTON", "Transit": "interstate" }, "geometry": { "type": "Point", "coordinates": [ -71.49594129409337, 41.864093706874577 ] } }
+,
+{ "type": "Feature", "id": 33, "properties": { "NAME": "ESMOND", "NAME_1": "SMITHFIELD", "Transit": "interstate" }, "geometry": { "type": "Point", "coordinates": [ -71.501288937117323, 41.878679550136205 ] } }
+,
+{ "type": "Feature", "id": 34, "properties": { "NAME": "DOWNTOWN WOONSOCKET", "NAME_1": "WOONSOCKET", "Transit": "rail" }, "geometry": { "type": "Point", "coordinates": [ -71.513264779737284, 42.003131192438936 ] } }
+,
+{ "type": "Feature", "id": 35, "properties": { "NAME": "BROAD STREET", "NAME_1": "CENTRAL FALLS", "Transit": "railinterstate" }, "geometry": { "type": "Point", "coordinates": [ -71.387195672258713, 41.887657590729489 ] } }
+,
+{ "type": "Feature", "id": 36, "properties": { "NAME": "DOWNTOWN PAWTUCKET", "NAME_1": "PAWTUCKET", "Transit": "railinterstate" }, "geometry": { "type": "Point", "coordinates": [ -71.382366013938054, 41.879900260139586 ] } }
+,
+{ "type": "Feature", "id": 37, "properties": { "NAME": "COUNTY ROAD", "NAME_1": "BARRINGTON", "Transit": "interstate" }, "geometry": { "type": "Point", "coordinates": [ -71.308097138695089, 41.739674451244497 ] } }
+,
+{ "type": "Feature", "id": 38, "properties": { "NAME": "JAMESTOWN", "NAME_1": "JAMESTOWN", "Transit": "ferry" }, "geometry": { "type": "Point", "coordinates": [ -71.367220021112502, 41.496467178177816 ] } }
+,
+{ "type": "Feature", "id": 39, "properties": { "NAME": "NEW\/OLD HARBOR", "NAME_1": "NEW SHOREHAM", "Transit": "ferry" }, "geometry": { "type": "Point", "coordinates": [ -71.559435637208338, 41.173660322949459 ] } }
+,
+{ "type": "Feature", "id": 40, "properties": { "NAME": "BOON STREET", "NAME_1": "NARRAGANSETT", "Transit": "rail" }, "geometry": { "type": "Point", "coordinates": [ -71.4592475381626, 41.427479645914502 ] } }
+,
+{ "type": "Feature", "id": 41, "properties": { "NAME": "EXIT 1 HOPKINTON", "NAME_1": "HOPKINTON", "Transit": "interstate" }, "geometry": { "type": "Point", "coordinates": [ -71.786146041074332, 41.449299301950681 ] } }
+,
+{ "type": "Feature", "id": 42, "properties": { "NAME": "WYOMING\/RICHMOND COMMONS", "NAME_1": "RICHMOND", "Transit": "interstate" }, "geometry": { "type": "Point", "coordinates": [ -71.688470999827956, 41.514245794266195 ] } }
+,
+{ "type": "Feature", "id": 43, "properties": { "NAME": "EXETER ROAD", "NAME_1": "EXETER", "Transit": "road" }, "geometry": { "type": "Point", "coordinates": [ -71.533611673529805, 41.547758044049431 ] } }
+,
+{ "type": "Feature", "id": 44, "properties": { "NAME": "I-95 INTERCHANGE", "NAME_1": "EXETER", "Transit": "interstate" }, "geometry": { "type": "Point", "coordinates": [ -71.647729059451308, 41.594842638269675 ] } }
+,
+{ "type": "Feature", "id": 45, "properties": { "NAME": "EXIT 5 VILLAGE", "NAME_1": "WEST GREENWICH", "Transit": "interstate" }, "geometry": { "type": "Point", "coordinates": [ -71.662813597428055, 41.609222159509493 ] } }
+,
+{ "type": "Feature", "id": 46, "properties": { "NAME": "ROUTE 2\/102", "NAME_1": "NORTH KINGSTOWN", "Transit": "railinterstate" }, "geometry": { "type": "Point", "coordinates": [ -71.516201536520626, 41.576277278506019 ] } }
+,
+{ "type": "Feature", "id": 47, "properties": { "NAME": "POST ROAD", "NAME_1": "NORTH KINGSTOWN", "Transit": "railferry" }, "geometry": { "type": "Point", "coordinates": [ -71.455575118271227, 41.596244491065697 ] } }
+,
+{ "type": "Feature", "id": 48, "properties": { "NAME": "WEST MAIN ROAD", "NAME_1": "MIDDLETOWN", "Transit": "rail" }, "geometry": { "type": "Point", "coordinates": [ -71.297958513968553, 41.524062899904912 ] } }
+,
+{ "type": "Feature", "id": 49, "properties": { "NAME": "EAST MAIN ROAD", "NAME_1": "MIDDLETOWN", "Transit": "road" }, "geometry": { "type": "Point", "coordinates": [ -71.275453205880339, 41.526517897400446 ] } }
+,
+{ "type": "Feature", "id": 50, "properties": { "NAME": "BLISS CORNERS", "NAME_1": "TIVERTON", "Transit": "road" }, "geometry": { "type": "Point", "coordinates": [ -71.146760042324246, 41.626063097537198 ] } }
+,
+{ "type": "Feature", "id": 51, "properties": { "NAME": "UPPER MAIN ROAD", "NAME_1": "TIVERTON", "Transit": "interstate" }, "geometry": { "type": "Point", "coordinates": [ -71.194344655649189, 41.656088356508207 ] } }
+,
+{ "type": "Feature", "id": 52, "properties": { "NAME": "WARWICK STATION", "NAME_1": "WARWICK", "Transit": "railinterstate" }, "geometry": { "type": "Point", "coordinates": [ -71.442086455136078, 41.725906922607777 ] } }
+,
+{ "type": "Feature", "id": 53, "properties": { "NAME": "PROVIDENCE GROWTH CORRIDORS", "NAME_1": "PROVIDENCE", "Transit": "interstate" }, "geometry": { "type": "Point", "coordinates": [ -71.425322387558168, 41.80511587854005 ] } }
+,
+{ "type": "Feature", "id": 54, "properties": { "NAME": "PROVIDENCE GROWTH CENTER", "NAME_1": "PROVIDENCE", "Transit": "railinterstate" }, "geometry": { "type": "Point", "coordinates": [ -71.409393623529539, 41.817832615438739 ] } }
+,
+{ "type": "Feature", "id": 55, "properties": { "NAME": "ROUTE 7 CORRIDOR", "NAME_1": "SMITHFIELD", "Transit": "interstate" }, "geometry": { "type": "Point", "coordinates": [ -71.52039005816296, 41.917569657691296 ] } }
+,
+{ "type": "Feature", "id": 56, "properties": { "NAME": "WEST CRANSTON VILLAGE", "NAME_1": "CRANSTON", "Transit": "interstate" }, "geometry": { "type": "Point", "coordinates": [ -71.535745872060133, 41.771972902895392 ] } }
+,
+{ "type": "Feature", "id": 57, "properties": { "NAME": "ROUTE 6\/94", "NAME_1": "FOSTER", "Transit": "road" }, "geometry": { "type": "Point", "coordinates": [ -71.734014905094227, 41.81509532846821 ] } }
+,
+{ "type": "Feature", "id": 58, "properties": { "NAME": "ROUTE 102 CORRIDOR", "NAME_1": "BURRILLVILLE", "Transit": "road" }, "geometry": { "type": "Point", "coordinates": [ -71.643577200007769, 41.964450285727487 ] } }
+,
+{ "type": "Feature", "id": 59, "properties": { "NAME": "BRANCH VILLAGE", "NAME_1": "NORTH SMITHFIELD", "Transit": "interstate" }, "geometry": { "type": "Point", "coordinates": [ -71.558040059492981, 42.001211447853443 ] } }
+,
+{ "type": "Feature", "id": 60, "properties": { "NAME": "RT138 \/ RT112", "NAME_1": "RICHMOND", "Transit": "interstate" }, "geometry": { "type": "Point", "coordinates": [ -71.660125590850413, 41.500260514666806 ] } }
+,
+{ "type": "Feature", "id": 61, "properties": { "NAME": "NOOSENECK HILL ROAD", "NAME_1": "COVENTRY", "Transit": "interstate" }, "geometry": { "type": "Point", "coordinates": [ -71.601139092394504, 41.669695514522481 ] } }
+,
+{ "type": "Feature", "id": 62, "properties": { "NAME": "HARTFORD AVE", "NAME_1": "JOHNSTON", "Transit": "interstate" }, "geometry": { "type": "Point", "coordinates": [ -71.49906629452596, 41.824067762339254 ] } }
+,
+{ "type": "Feature", "id": 63, "properties": { "NAME": "EAST PROVIDENCE RIVERFRONT", "NAME_1": "EAST PROVIDENCE", "Transit": "railinterstate" }, "geometry": { "type": "Point", "coordinates": [ -71.387695926853056, 41.81223925242054 ] } }
+,
+{ "type": "Feature", "id": 64, "properties": { "NAME": "FORMER ZION BIBLE CAMPUS", "NAME_1": "BARRINGTON", "Transit": "interstate" }, "geometry": { "type": "Point", "coordinates": [ -71.331244793464393, 41.758321153952984 ] } }
+,
+{ "type": "Feature", "id": 65, "properties": { "NAME": "METACOM AVENUE", "NAME_1": "BRISTOL", "Transit": "roadferry" }, "geometry": { "type": "Point", "coordinates": [ -71.263147421111924, 41.691149644245797 ] } }
+,
+{ "type": "Feature", "id": 66, "properties": { "NAME": "PORTSMOUTH TOWN CENTER", "NAME_1": "PORTSMOUTH", "Transit": "roadinterstate" }, "geometry": { "type": "Point", "coordinates": [ -71.252351290149761, 41.595108052337288 ] } }
+
+]
+}

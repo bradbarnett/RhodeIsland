@@ -1,0 +1,1171 @@
+<!DOCTYPE html >
+<html>
+<head>
+  <title>Rhode Island Growth Centers</title>
+  <meta charset="utf-8" />
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
+  <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+      <!-- <script src="/scripts/jquery-1.11.0.min.js"></script>     -->    <script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js?v1.2.4"></script>
+	<script src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js"></script>  
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7/leaflet.css"/>	  
+	<!-- <script src="http://codeorigin.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>     -->	
+	<script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="http://leaflet.github.io/Leaflet.heat/dist/leaflet-heat.js"> </script>
+    <script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js?v1.2.4"></script>
+	<link rel="stylesheet" type="text/css" href="map.css"> 
+    <script src="geotoarray.js"></script>
+  	<script src="plugins.js"></script>
+
+    
+		<link rel="stylesheet" type="text/css" href="layout.css"> 
+		<link rel="stylesheet" type="text/css" href="style.css"> 
+		<!-- <script type="text/javascript" src="http://cdn.leafletjs.com/leaflet-0.4.5/leaflet.js"></script> 
+		<script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js?v1.2.4"></script>
+		<script src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js"></script>     -->		
+		<script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
+		<script src="http://leaflet.github.io/Leaflet.heat/dist/leaflet-heat.js"> </script>
+		<script type="text/javascript" src="data/roads.js"></script> 
+		<script type="text/javascript" src="growthcenters.js"></script>
+		<script src="/data/totalJobsFactor30Array.js"></script>
+		<!-- <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script> -->
+	    <!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+		<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script> -->
+
+  
+</head>
+
+<body>
+    <div id="container">
+        <div id="main">
+ 
+            <div id="leftSide">
+
+                    <ul id="nav">
+				        <li class="current"><a href="#start" class="intros">Intro</a></li>
+				        <li><a href="#systems" class="systems">Systems</a></li>
+				        <li><a href="#gamesection" class="play">Play the Game</a></li>
+				    </ul>
+		
+			</div>
+ 
+            <div id="rightSide">
+                    <section id="start">
+                    	<div id="bgimage">
+				        <p class="welcometext">Growth Centers are a key part of RhodeMap RI. In 2013, participants from around the state played a game in which they identified which growth centers match different types of communities. See if you can match what they came up with! Click "Systems" to the left to get started.</p>
+				    	</p>
+<p class="welcometextsm">You can also learn more about growth centers below:</p>				    	
+<div class="containerleft">
+<button class="welcomebut" id="what">What are Growth Centers?</button>
+<div class="welcome" id="what">
+<ul class="welcome"></ul>
+<br>
+<li>Growth centers have a mixture of uses, are compact and walkable. They are part of a strategy for land development and conservation laid out in Land Use 2025, an element of the <a href="http://www.planning.ri.gov/planning" class="outbound">State Guide Plan.</a> 
+</li>
+<li>They allow us to build more of what is already great in Rhode Island – places that provide jobs, good homes, and recreation while preserving our natural resources for future generations. 
+</li>
+<li>They are a way both to expand the economy and add new jobs while limiting new, expensive infrastructure. 
+</li>
+</div>				    	
+</div>
+<div class="containerright">
+<button class="welcomebut" id="why">Why are they important?</button>
+<div class="welcome" id="why">
+	<br>
+</ul>
+<li>The State has limited resources – come tell us where in your communities you think investment should occur.
+</li>
+<li>This work will influence future changes to Land Use 2025, which sets standards for what municipalities must address in their Comprehensive Plans.
+</li>
+<li>What we decide about growth centers will have significant implications for the strategies in the State’s new Economic Development and Housing plans.
+</li>	
+</div>	
+</div>
+<p id="projectof">a project of:</p>		            	
+<a href="http://www.rhodemapri.org"><img src="/imagery/RILogo-01.png" class="logo"></a>
+</div>			    </section>
+				    
+<script>						$("div.welcome").hide();
+						$("button.welcomebut").click(function(){
+							var wid = this.id;
+							console.log("hi");
+							var wshowing = "#" + wid + ".welcome";
+								
+								// $('.welcome').hide("slow");
+								$(wshowing).slideToggle("slow");
+						});	</script>
+				 
+				 
+				 				    <section id="systems">
+					    <div class="innersidebar">
+							<h2>
+							Instructions
+							</h2>
+							<div id="sysintro" class="intro"><li><span class="pop">Click</span> on the buttons below to explore the different systems that define growth centers.</li> <li><span class="pop">Click</span> on growth centers with the "i" icon to learn more about systems in that location.</li> <li><span class="pop">Pan & Zoom </span> the map to a location you're interested in. </li></div>
+
+							<button id="econo" class="concrete-flat-button">Economic</button>
+								
+								
+								<!-- Slider -->
+								
+								
+								<div id="econo" class="syssection">
+									
+									<div id="econotext">The location of jobs within and around the state is a core issue for Rhode Islanders. Growth centers can support economic development goals by matching the character of the community and the infrastructure required to serve it to the number and type of jobs nearby.</div>
+									
+									<div class="legend"><div id="sewerlegend" class="legendbox"></div><span class=bold>Utility Service Areas</span></div>
+									<p class="bold">Locations with <span id="ui-1text" display="inline">0</span><span id="ui-1" display="inline"></span>-<span id="ui-2text">10,000</span><span id="ui-2"></span> jobs within 1 mile </p>
+									<div id="scale"></div><p class="helptext">Tip: Don't forget to reset to the full range before exploring other systems!</p>
+								</div>
+								<button id="trans" class="concrete-flat-button">Transportation</button>	
+								<div id="trans" class="syssection">
+									<div id="transtext">One of the key components supporting a healthy regional economy is the movement of goods, services and people. The character of communities is shaped by available transportation networks.
+														<p>As transportation networks change, like when rail stops serving an area or a new interstate is built, the character of the community can also change. Growth centers are an opportunity to
+														match the character of a community with changing transportation infrastructure.  </p>
+									</div>
+									
+									
+										<div class="legend"></div>
+										<span class="bold">Transportation Networks</span>
+	
+										<svg height="100" width="200">
+										<rect x="10" y="5" width="25" height="15" fill="#E26A6A" /><text x="38" y="17" class="bold">Major Highways</text>
+										<rect x="10" y="25" width="25" height="15" fill="none" stroke= "gray" stroke-width="2" /><text x="38" y="37" class="bold">Other Roads</text>
+										<rect x="10" y="45" width="25" height="15" fill="#B88756" /><text x="38" y="57" class="bold">Rail</text>
+										<rect x="10" y="65" width="25" height="15" fill="steelblue" /><text x="38" y="77" class="bold">Port</text>
+										</svg>
+									
+									
+									</div>
+								<button id="peopl" class="concrete-flat-button">People</button>	
+								<div id="peopl" class="syssection">
+									<div id="peopltext">Opportunity Mapping is a way of understanding how where people live impacts their access to opportunity in categories like education, socio-economic, and housing.  This map shows the Health & Environment Opportunity Scores by Census Tract. <a class="outbound" href="http://rhodemapri.org/documents/mapping-opportunity-in-rhode-island/">Learn More</a></div>
+											<div class="legend"></div>
+											<span class="bold">Health & Environment Opportunity Scores</span>
+									<svg height="120" width="200">
+									<rect x="10" y="5" width="25" height="15" fill="#EA8181" /><text x="38" y="17" class="bold">Very Low</text>
+									<rect x="10" y="25" width="25" height="15" fill="#DC4C4C" stroke= "gray" stroke-width="2" /><text x="38" y="37" class="bold">Low</text>
+									<rect x="10" y="45" width="25" height="15" fill="#BB2C2C" /><text x="38" y="57" class="bold">Moderate</text>
+									<rect x="10" y="65" width="25" height="15" fill="#891717" /><text x="38" y="77" class="bold">High</text>
+									<rect x="10" y="85" width="25" height="15" fill="#580707" /><text x="38" y="97" class="bold">Very High</text>
+									
+										
+									</svg>
+								</div>
+							</div>
+							
+							<div class="innerright">
+								<div id="mapContainer">
+									<div id="details" class="leaflet-control-attribution"><div id="close">Close</div></div> 
+									<div id="sysMap"> <div class="leaflet-bottom leaflet-right"></div></div>	
+								</div>
+							</div>
+						
+						
+						
+					<script>
+						//Showing the descriptive text
+					function sysMap() {
+					$("#close").click(function(){
+						$("#details").fadeToggle("slow");
+					});
+						$("button").click(function(){
+
+							var id = this.id;
+							
+							var showing = "#" + id + ".syssection";
+								$('.syssection').hide("slow");
+								$(showing).toggle("slow");
+							
+															
+															
+							if (id == "econo") {	
+								d3.select(".people").style("opacity","0");
+								d3.selectAll("g").selectAll(".sewer").transition().duration(1000).style("opacity",".5");
+								d3.select(".sewer").transition().duration(4000).ease("bounce").style("opacity",".5");
+								d3.selectAll(".transit").selectAll("path").transition(1000).style("opacity","0");
+						 		d3.selectAll(".systems").classed("jobs", true).transition().duration(1000).style("opacity",".8");
+								d3.selectAll("circle, .systems").classed("transit", false).style("opacity",".8");	
+
+						 		$("#details").hide();
+						 		
+						 				
+								// d3.selectAll(".transit").transition(1000).style("opacity","0");
+							}	
+								
+							if (id == "trans") {	
+												
+								
+								d3.selectAll("g").selectAll(".sewer").transition(1000).style("opacity","0");
+								d3.select(".sewer").transition().duration(4000).style("opacity","0");
+								d3.select(".people").style("opacity","0");
+								d3.selectAll("circle, .systems").classed("jobs", false).style("opacity","1");
+								d3.selectAll("circle, .systems").classed("transit", true).transition(1000).style("opacity", ".8");
+								d3.selectAll(".transit").selectAll("path").transition(1000).style("opacity","1");
+
+								$("#details").hide();
+							}			
+							
+							if (id == "peopl") {	
+								d3.selectAll("g").selectAll(".sewer").transition(1000).style("opacity","0");
+								d3.select(".sewer").transition().duration(4000).style("opacity","0");
+								d3.select(".people").transition().duration(1000).style("opacity",".5");
+								d3.selectAll("circle, .systems").classed("transit", false).style("opacity",".8");	
+								d3.selectAll(".transit").selectAll("path").style("opacity", "0");
+						 		d3.selectAll(".systems").classed("jobs", true).transition().duration(1000).style("opacity",".9");
+						 		$("#details").hide();
+						 						
+								
+								
+							}	
+							})
+						
+						
+						var layer = L.tileLayer('http://a{s}.acetate.geoiq.com/tiles/acetate-hillshading/{z}/{x}/{y}.png', {
+							attribution: '&copy;2012 Esri & Stamen, Data from OSM and Natural Earth',
+							subdomains: '0123',
+							minZoom: 2,
+							maxZoom: 18
+						});
+					  
+							// var layer = new L.StamenTileLayer("toner-background");
+							var sysMap = new L.Map("sysMap", {
+							    center: new L.LatLng(41.7154364,-71.6171092),
+							    zoom: 10
+							});
+							sysMap.addLayer(layer);
+						
+						
+					    
+					     
+					   
+					        
+					//Let the D3 begin!    
+					 
+					//Start the svg			
+						sysMap._initPathRoot()   
+						
+					  
+					  var svgY = d3.select("#sysMap").select("svg"), 
+					  gY = svgY.append("g").attr("class", "sewer");
+						d3.json("/data/SeweredAreas.geojson", function(collection) {
+						  var transform = d3.geo.transform({point: projectPoint}),
+						      path = d3.geo.path().projection(transform);
+						
+						  var featureY = gY.selectAll("path")
+						      .data(collection.features)
+						    .enter().append("path")
+						    ;
+						
+						  sysMap.on("viewreset", reset);
+						  reset();
+						
+						  // Reposition the SVG to cover the features.
+						  function reset() {
+						    var bounds = path.bounds(collection),
+						        topLeft = bounds[0],
+						        bottomRight = bounds[1];
+						
+						    // svgL .attr("width", bottomRight[0] - topLeft[0])
+						        // .attr("height", bottomRight[1] - topLeft[1])
+						        // .style("left", topLeft[0] + "px")
+						        // .style("top", topLeft[1] + "px");
+// 						
+						    // gL   .attr("transform", "translate(" + -topLeft[0] + "," + -topLeft[1] + ")");
+// 						
+						    featureY.attr("d", path).attr("class", "sewer").style("fill", "#ABB7B7").style("stroke-width", 1).style("stroke", "#22313F").style("opacity", 0);
+						  }
+						
+						  // Use Leaflet to implement a D3 geometric transformation.
+						  function projectPoint(x, y) {
+						    var point = sysMap.latLngToLayerPoint(new L.LatLng(y, x));
+						    this.stream.point(point.x, point.y);
+						  }
+						});
+
+
+
+						var svgL = d3.select("#sysMap").select("svg");
+					gZ = svgL.append("g").attr("class", function() {return "leaflet-zoom-hide" + " transit"});
+
+						d3.json("/data/interstates.geojson", function(collection) {
+						  var transform = d3.geo.transform({point: projectPoint}),
+						      path = d3.geo.path().projection(transform);
+						
+						  var feature = gZ.selectAll("path")
+						      .data(collection.features)
+						    .enter().append("path");
+						
+						  sysMap.on("viewreset", reset);
+						  reset();
+						
+						  // Reposition the SVG to cover the features.
+						  function reset() {
+						    var bounds = path.bounds(collection),
+						        topLeft = bounds[0],
+						        bottomRight = bounds[1];
+						
+						    // svgL .attr("width", bottomRight[0] - topLeft[0])
+						        // .attr("height", bottomRight[1] - topLeft[1])
+						        // .style("left", topLeft[0] + "px")
+						        // .style("top", topLeft[1] + "px");
+// 						
+						    // gL   .attr("transform", "translate(" + -topLeft[0] + "," + -topLeft[1] + ")");
+// 						
+						    feature.attr("d", path).style("fill","none").style("stroke-width", 2).style("stroke", "#E26A6A").style("opacity", 0);
+						  }
+						
+						  // Use Leaflet to implement a D3 geometric transformation.
+						  function projectPoint(x, y) {
+						    var point = sysMap.latLngToLayerPoint(new L.LatLng(y, x));
+						    this.stream.point(point.x, point.y);
+						  }
+						});
+						
+
+						
+						d3.json("/data/Rail.geojson", function(collection) {
+						  var transform = d3.geo.transform({point: projectPoint}),
+						      path = d3.geo.path().projection(transform);
+						
+						  var feature = gZ.selectAll("path")
+						      .data(collection.features)
+						    .enter().append("path");
+						
+						  sysMap.on("viewreset", reset);
+						  reset();
+						
+						  // Reposition the SVG to cover the features.
+						  function reset() {
+						    var bounds = path.bounds(collection),
+						        topLeft = bounds[0],
+						        bottomRight = bounds[1];
+						
+						    // svgL .attr("width", bottomRight[0] - topLeft[0])
+						        // .attr("height", bottomRight[1] - topLeft[1])
+						        // .style("left", topLeft[0] + "px")
+						        // .style("top", topLeft[1] + "px");
+// 						
+						    // gL   .attr("transform", "translate(" + -topLeft[0] + "," + -topLeft[1] + ")");
+// 						
+						    feature.attr("d", path).style("fill","none").style("stroke-width", 3).style("stroke", "#B88756").style("opacity", 0);
+						  }
+						
+						  // Use Leaflet to implement a D3 geometric transformation.
+						  function projectPoint(x, y) {
+						    var point = sysMap.latLngToLayerPoint(new L.LatLng(y, x));
+						    this.stream.point(point.x, point.y);
+						  }
+							});
+
+
+
+						    gP = svgL.append("g").attr("class", function() {return "people"}).style("opacity", "0");
+
+						var svgs = d3.select("#sysMap").select("svg"), gS = svgs.append("g");	
+
+					  							//half circle effect
+							var grad = svgs.append("defs").append("linearGradient").attr("id", "grad")
+							         .attr("x1", "100%").attr("x2", "0%").attr("y1", "0%").attr("y2", "0%");
+										grad.append("stop").attr("offset", "50%").style("stop-color", "#E26A6A");
+										grad.append("stop").attr("offset", "50%").style("stop-color", "#B88756");
+										
+							var grad2 = svgs.append("defs").append("linearGradient").attr("id", "grad2")
+							         .attr("x1", "100%").attr("x2", "0%").attr("y1", "0%").attr("y2", "0%");
+										grad2.append("stop").attr("offset", "50%").style("stop-color", "steelblue");
+										grad2.append("stop").attr("offset", "50%").style("stop-color", "#E26A6A");
+							
+							var grad3 = svgs.append("defs").append("linearGradient").attr("id", "grad3")
+							         .attr("x1", "100%").attr("x2", "0%").attr("y1", "0%").attr("y2", "0%");
+										grad3.append("stop").attr("offset", "50%").style("stop-color", "#B88756");
+										grad3.append("stop").attr("offset", "50%").style("stop-color", "steelblue");
+				
+				var svgDetails = d3.select("#details").append("div").attr("width", 316).attr("height", 225).attr("class", "bold");
+				var titleText = svgDetails.append("div").attr("class", "detailstext heading");
+				var econText = svgDetails.append("div").attr("class", "detailstext");
+				var tranText = svgDetails.append("div").attr("class", "detailstext");
+				var peopText = svgDetails.append("div").attr("class", "detailstext");
+				var tiptext = gS.append("text");
+						d3.json("/data/GrowthCentersJobs.geojson", function(datajson) {
+									datajson.features.forEach(function(d) {
+									d.LatLng = new L.LatLng(parseFloat(d.geometry.coordinates[1]),parseFloat(d.geometry.coordinates[0]));
+									
+									})
+						
+										
+							var gctransit = gS.selectAll("circle")
+									   .data(datajson.features)
+									   .enter()
+									   .append("circle")
+									 
+									   .attr("type", function(d, i) { return datajson.features[i].properties.Typology; })
+					   				   .attr("name", function(d, i) { return datajson.features[i].properties.NAME; })
+					   				   .attr("class", function(d, i) { 
+					   				   	
+					   				   		if ( datajson.features[i].properties.NAME == "DOWNTOWN WOONSOCKET" || datajson.features[i].properties.NAME == "KNIGHTSVILLE" ||
+												datajson.features[i].properties.NAME == "WARWICK STATION" || datajson.features[i].properties.NAME == "POST ROAD" || 
+												datajson.features[i].properties.NAME == "BRANCH VILLAGE" || datajson.features[i].properties.NAME == "DOWNTOWN WESTERLY") 
+												
+											
+											 {
+												return (datajson.features[i].properties.Transit + " jobs systems featured"); }
+													  
+												
+												else {
+													return (datajson.features[i].properties.Transit + " jobs systems"); }
+												})
+					   				   	
+					   				   .attr("econtext", function(d, i) { return ("Economic: " + datajson.features[i].details.economic); })
+					   				   .attr("trantext", function(d, i) { return ("Transportation: " + datajson.features[i].details.transportation); })
+					   				   .attr("peoptext", function(d, i) { return ("People: " + datajson.features[i].details.people); })
+									   .attr("r", 10);
+									   
+							var gcText = gS.selectAll("text")
+										.data(datajson.features)
+										.enter()
+										.append("text")
+										.text("i")
+										.attr("class", function(d, i) { 
+					   				   	
+					   				   		if ( datajson.features[i].properties.NAME == "DOWNTOWN WOONSOCKET" || datajson.features[i].properties.NAME == "KNIGHTSVILLE" ||
+												datajson.features[i].properties.NAME == "WARWICK STATION" || datajson.features[i].properties.NAME == "POST ROAD" || 
+												datajson.features[i].properties.NAME == "BRANCH VILLAGE" || datajson.features[i].properties.NAME == "DOWNTOWN WESTERLY") 
+												
+											
+											 {
+												return ("featured"); }
+													  
+												
+												else {
+													return ("unfeatured"); }
+												})
+										
+										.style("fill", "white") 
+										.style("stroke", "black")
+										.style("stroke-width", ".1")
+										.attr("text-anchor", "start")
+										.attr("font-family", "georgia")
+										.attr("font-size", "1.5em")
+										;	   		
+									   
+									   gctransit.on("click", function(d) {
+										d3.selectAll("circle").transition(250).style("opacity", .6);
+										// d3.selectAll(".tiptext").remove();
+										$(".detailstext").empty();
+											d3.select(this)
+												.transition(250)
+												.style("opacity", 1)
+											d3.select(!this)
+											.transition(250)
+											.style("opacity", .5)
+											var xPos = 	parseFloat(d3.select(this).attr("cx")) + 7;
+									  var yPos = 	parseFloat(d3.select(this).attr("cy")) - 7;
+									
+											
+											
+														tiptext
+															  .text( d3.select(this).attr("name"))
+															  .attr("class", "tiptext")
+															  .attr("text-anchor", "start")
+															  .attr("font-family", "sans-serif")
+															  .attr("font-size", "11px")
+															  .attr("font-weight", "bold")
+															  .attr("display", "block")
+															  .attr("x", xPos)
+										  					  .attr("y", yPos)
+															  ;	
+											console.log($(this).attr("cx"));
+											
+											titleText.append("text");	
+														titleText
+															  .text(d3.select(this).attr("name"))	
+															  .attr("width", 300)
+															  ;
+											
+											econText.append("text");	
+														econText
+															  .text(d3.select(this).attr("econtext"))	
+															  .attr("x", "15")
+										  					  .attr("y", "75")
+															  .style("display", "block")
+															  .style("visibility", "visible")
+															  .attr("width", 300)
+															  ;
+															  
+											tranText.append("text");	
+														tranText
+															  .text(d3.select(this).attr("trantext"))	
+															  .attr("visibility", "visible")
+															  .attr("x", "15")
+										  					  .attr("y", "160")
+															  .style("display", "block")
+															  .attr("width", 300)
+															  ;		
+											peopText.append("text");	
+														peopText
+															  .text(d3.select(this).attr("peoptext"))	
+															  .attr("visibility", "visible")
+															  .attr("x", 15)
+										  					  .attr("y", 155)
+															  .style("display", "block")
+															  .attr("width", 300)
+															  ;						  		  	
+											if ($(this).attr('name') == "DOWNTOWN WOONSOCKET" || $(this).attr('name') == "KNIGHTSVILLE" ||
+												$(this).attr('name') == "WARWICK STATION" || $(this).attr('name') == "POST ROAD" || 
+												$(this).attr('name') == "BRANCH VILLAGE" || $(this).attr('name') == "DOWNTOWN WESTERLY") 
+												
+											
+											 {
+												return $("#details").show();
+													   $("#details").contents().show();
+													   $(".detailstext").attr("visibility", "visible");
+													  
+												}
+												else {
+													return $("#details").hide();
+												};
+							
+				
+					
+				$(".draggables li")
+						.click(function(){
+						var elementMatch = $(this).text().substr(0, 4);
+						console.log(elementMatch);
+						$("div#gamedetails").show();
+						$("div#gamedetails").children().hide();
+						$("div#"+elementMatch).toggle();
+					})
+				
+									   });
+								
+								d3.transition()
+    .duration(750)
+    .delay(2000)
+    .ease("linear")
+    .each(function() {
+      d3.selectAll("circle").transition().duration(100).delay(
+      	function(d, i) { return (i * 50); })
+          .style("opacity", .6)
+    })
+ 					
+								function update() {
+									  gctransit.attr("cx",function(d) { return sysMap.latLngToLayerPoint(d.LatLng).x})
+									  gctransit.attr("cy",function(d) { return sysMap.latLngToLayerPoint(d.LatLng).y})
+									  gcText.attr("x",function(d) { return (sysMap.latLngToLayerPoint(d.LatLng).x - 3);})
+									  gcText.attr("y",function(d) { return (sysMap.latLngToLayerPoint(d.LatLng).y + 5);})
+									  // tiptext.attr("display", "none")
+									  };								  
+									  
+								sysMap.on("viewreset", update);
+							update();
+						 		
+							// gctransit.on('mouseout',function(d){
+// 						
+						// if ($(this).data('clicked')) {return} 
+						// d3.select("text").remove();
+						// d3.select(this).transition(1000).attr("r", 10);
+					// });
+// 					
+	
+	
+						$("#scale").slider({
+							range: true,
+							min: 0, // there are 71 months between 1/1/04 and 12/31/09, 0 is all events
+							max: 60000, 
+							values: [0, 60000], //default slider value
+							// step: 100, // step is the allow increments the slider can move. 1 = one month
+							slide: function(event, ui, i) {
+							var sliderrange = [ui.values[0],ui.values[1]];
+							// handle case where slider at zero = show all events
+							// if(ui.value[1] == 0)
+							// {
+							// // highlight all explosion points
+							// d3.selectAll("circle, .systems")
+							// .style("display","block").style("opacity", 1);
+// 							
+							// // change the slider text to appropriate date
+							// d3.select("#slidertext")
+							// .text('Jobs within 1 Mile of Growth Center');
+// 							
+							// }else{
+// 							
+							
+							d3.selectAll("circle.jobs").attr("display", function(d, i) {
+							  //Replace with the correct date comparison logic 
+							  return datajson.features[i].properties.TotalJobMi < sliderrange[1] && datajson.features[i].properties.TotalJobMi > sliderrange[0] ? "block" : "none";
+							});
+							
+							// get and format current slider value
+							d3.select("#ui-1text").remove();
+							d3.select("#ui-2text").remove();
+							d3.select("#ui-1").text(ui.values[0]);
+							d3.select("#ui-2").text(ui.values[1]);					
+							// change the slider text to appropriate date
+							// d3.select("#slidertext")
+							// .text('Attacks During ');
+							
+							}
+							});
+
+
+						})
+					    
+					   // $("circle").click( function() {
+						// d3.selectAll("text").remove();
+						// $(this).data('clicked', true);
+						// d3.selectAll("circle").transition(250);
+						// d3.select(this)
+							// .transition(250)
+							// .style("opacity", 1);
+						// var xPos = 	parseFloat(d3.select(this).attr("cx")) + 7;
+						// var yPos = 	parseFloat(d3.select(this).attr("cy")) - 7;
+						// tooltext = g.append("text");
+									// tooltext
+										  // .text( d3.select(this).attr("name"))
+										  // .attr("text-anchor", "start")
+										  // .attr("font-family", "sans-serif")
+										  // .attr("font-size", "11px")
+										  // .attr("font-weight", "bold")
+										  // .attr("x", xPos)
+					  					  // .attr("y", yPos)
+										  // .style("display", "inherit")
+										  // ;	
+											// detailsText = gDetails.append("text");	
+									// detailsText
+										  // .text(d3.select(this).attr("name"))	
+										  // .attr("text-anchor", "start")
+										  // .attr("font-family", "sans-serif")
+										  // .attr("font-size", "11px")
+										  // .attr("font-weight", "bold")
+										  // .attr("x", 15)
+					  					  // .attr("y", 15)
+										  // .style("display", "block")
+										  // ;		
+					// });
+					    
+					
+					
+					
+				
+					    
+
+
+
+						d3.json("/data/OpportunityHealthScore.geojson", function(collection) {
+						  var transform = d3.geo.transform({point: projectPoint}),
+						      path = d3.geo.path().projection(transform);
+						
+						  var feature = gP.selectAll("path")
+						      .data(collection.features)
+						    .enter().append("path");
+						
+						  sysMap.on("viewreset", reset);
+						  reset();
+						
+						  // Reposition the SVG to cover the features.
+						  function reset() {
+						    var bounds = path.bounds(collection),
+						        topLeft = bounds[0],
+						        bottomRight = bounds[1];
+						
+						    // svgL .attr("width", bottomRight[0] - topLeft[0])
+						        // .attr("height", bottomRight[1] - topLeft[1])
+						        // .style("left", topLeft[0] + "px")
+						        // .style("top", topLeft[1] + "px");
+// 						
+						    // gL   .attr("transform", "translate(" + -topLeft[0] + "," + -topLeft[1] + ")");
+// 						
+						    feature.attr("d", path).style("fill", 
+						    	function(d,i) {
+						    		// if (collection.features[i].properties.PctCng < 0) {
+						    			// return "#FFEFEF"}
+						    		// else if (collection.features[i].properties.PctCng >= 0 && collection.features[i].properties.PctCng < 10 ) {
+						    			// return "#EA8181"
+						    		// }
+						    		// else if (collection.features[i].properties.PctCng >= 10 && collection.features[i].properties.PctCng < 20 ) {
+						    			// return "#BB2C2C"
+						    		// }
+						    		// else if (collection.features[i].properties.PctCng >= 20 && collection.features[i].properties.PctCng < 30 ) {
+						    			// return "#EA8181"
+						    		// };
+						    		
+						    		if (collection.features[i].properties.HE_SCORE == 0) {return "#FFEFEF"}
+						    		else if (collection.features[i].properties.HE_SCORE == 1) {return "#EA8181"}
+						    		else if (collection.features[i].properties.HE_SCORE == 2) {return "#DC4C4C"}
+						    		else if (collection.features[i].properties.HE_SCORE == 3) {return "#BB2C2C"}
+						    		else if (collection.features[i].properties.HE_SCORE == 4) {return "#891717"}
+						    		else if (collection.features[i].properties.HE_SCORE == 5) {return "#580707"}
+						    	}
+						    	
+						    	
+						    	).style("stroke-width", .5).style("stroke", "white").style("opacity", 1);
+						  }
+						
+						  // Use Leaflet to implement a D3 geometric transformation.
+						  function projectPoint(x, y) {
+						    var point = sysMap.latLngToLayerPoint(new L.LatLng(y, x));
+						    this.stream.point(point.x, point.y);
+						  }
+						});
+
+
+						
+
+						
+					
+					
+					};		
+					
+					
+					
+					
+			
+					
+						
+					
+					sysMap();
+					
+					
+					</script>
+						
+				    </section>	
+				 
+				 
+				    <section id="gamesection">
+			        <div class="innersidebar">
+						<h2>Instructions</h2>
+						<div id="gameintro" class="intro">
+							<ol class="circles-list">
+								<li class="circles-list"><span class="pop">Drag</span> a text box onto the growth center that you think it matches. Make sure the growth center turns black before dropping the text box.</li> 
+								<li><span class="pop">Keep</span> going until you get 5 right! </li>  
+							</ol>
+						</div>
+					
+					<div class="containerside">
+						<button class="gamebut" id="gametips">Tips</button>
+						<div class="gametips intro" id="gametips">
+							
+							<li class="tips"><span class="pop">Click</span> on the text boxes to learn a bit about each growth center type.</li> 
+							<li class="tips"><span class="pop">Click</span> on a growth center on the map for the name of that location.</li> 
+							<li class="tips"><span class="pop">Pan & Zoom </span> the map to a location you're interested in. </li>
+							
+						</div>	
+					</div>
+			 
+				    <script>						
+				        $("div.gametips").hide();
+						$("button.gamebut").click(function(){
+							var gid = this.id;
+							console.log(gid);
+							var gshowing = "#" + gid + ".gametips";
+								
+								// $('.welcome').hide("slow");
+								$(gshowing).slideToggle("slow");
+						});	
+					</script>
+					
+						<div class="col draggables"></div>
+					
+						<div id="gamedetails">
+							<div id="Corr" class="hidden">
+								<p class="typetitle">Corridor</p>
+								<img src="/imagery/Corridor.jpg" class="gameimg">
+								<p class="typedesc">A corridor connects multiple neighborhoods within a
+								city or town, and may continue through several towns.
+								Often following historic streetcar routes, it is lined with
+								residential, commercial and mixed use buildings, as
+								well as government and community uses.</p>
+							</div>	
+							<div id="Down" class="hidden">
+								<p class="typetitle">Downtown</p>
+								<img src="/imagery/Downtown.jpg" class="gameimg">
+								<p class="typedesc">Downtowns contain a mix of commercial, residential, and civic uses. They represent the core of our 
+									cities and larger towns and typically draw people from throughout the region for jobs, shopping, entertainment, and culture.</p>
+							</div>	
+							<div id="Trad" class="hidden">
+								<p class="typetitle">Traditional Village</p> 
+								<img src="/imagery/TraditionalVillage.jpg" class="gameimg">
+								<p class="typedesc">
+									Traditional villages are self-contained centers with a mix of
+									residential, commercial and civic uses. Often laid out before
+									the arrival of the automobile, they typically have small lots
+									and buildings close to the street, conneded by a network of
+									shady sidewalks, parks and other community amenities.
+								</p>
+							</div>	
+							<div id="Comm" class="hidden">
+								<p class="typetitle">Commercial/Mixed-Use</p>
+								<img src="/imagery/CommercialMixedUse.jpg" class="gameimg">
+								<p class="typedesc">
+									Commercial/Mixed-Use areas are devoted to commercial
+									uses typically found at interstate interchanges and
+									other areas that are easy to reach by automobile.
+									They feature big box stores and chain restaurants, but
+									can also include a mix of residential and office uses.
+								</p>
+							</div>	
+							<div id="Haml" class="hidden">
+								<p class="typetitle">Hamlet</p>
+								<img src="/imagery/Hamlet.jpg" class="gameimg">
+								<p class="typedesc">
+								The hamlet is a cluster of homes, businesses or
+								community uses surrounded by open space. They are
+								often located at crossroads of local roads and serve
+								the surrounding rural neighborhood or town.</p>
+							</div>	
+							<div id="Main" class="hidden">
+								<p class="typetitle">Main Street</p>
+								<img src="/imagery/MainStreet.jpg" class="gameimg">
+								<p class="typedesc">						
+								Main streets act as the focus of activity for the
+								surrounding town. They typically have a walkable
+								street with parking at the curb, lined with 2-5 story
+								mi)(ed·use buildings.
+								</p>
+							</div>	
+							<div id="Neig" class="hidden">
+								<p class="typetitle">Neighborhood</p>
+								<img src="/imagery/Neighborhood.jpg" class="gameimg">
+								<p class="typedesc">										
+								The neighborhood is a self-contained part of a larger
+								city or town. It is primarily residential, but may include
+								some shops, restaurants and service businesses.
+								</p>
+							</div>
+							<div id="New" class="hidden">
+								<p class="typetitle">New Village</p>
+								<img src="/imagery/TraditionalVillage.jpg" class="gameimg">
+								<p class="typedesc">											
+								New villages are laid out acording to historic town-planning principles. They are designed to work the
+								same way, providing for a mix of residential, commercial and
+								civic uses within a compact, walkable center. As with the
+								traditional village, beautiful streets, sidewalks, parks and
+								other public spaces allow for a high quality of life in a small
+								area.
+								</p>
+							</div>	
+							<div id="Tran" class="hidden">
+								<p class="typetitle">Transit Station Development</p>
+								<img src="/imagery/TransitStationDevelopment.jpg" class="gameimg">
+								<p class="typedesc">
+								Transit stations provide access to public transportation
+								systems, whether rail, bus or plane. They can be in
+								historic village, town or city centers, or in suburban
+								areas serving commuters.
+								</p>
+							</div>	
+						</div>
+						
+					
+						
+					</div>
+						<div class="innerright">
+					    <div id="map">
+					    	<div id="wrong" class="popup hidden">Try Again! </div>
+							<div id="right" class="popup hidden">Nice job!</div>
+							<div id="winner" class="popup hidden">Winner! Go to <a href="http://www.rhodemapri.org">RhodeMap Rhode Island</a> to learn more about the project. Hit "refresh" to play again. 
+							</div>
+							<div class="leaflet-top leaflet-right"><div id="pb"></div></div>
+						</div>
+						</div>
+						    
+						    
+						<div class="col droptargets"></div>
+						<script>
+					 
+					 
+					 
+					 
+					var layer = L.tileLayer('http://a{s}.acetate.geoiq.com/tiles/acetate-hillshading/{z}/{x}/{y}.png', {
+						attribution: '&copy;2012 Esri & Stamen, Data from OSM and Natural Earth',
+						subdomains: '0123',
+						minZoom: 2,
+						maxZoom: 18
+					});
+					  
+							// var layer = new L.StamenTileLayer("toner-background");
+							var map = new L.Map("map", {
+							    center: new L.LatLng(41.7154364,-71.6171092),
+							    zoom: 10
+							});
+							map.addLayer(layer);
+							
+					        var heat = L.heatLayer(Vietnamese,{
+					            opacity: .2,
+					            radius: 10,
+					            blur: 10, 
+					            maxZoom: 20,
+					            max: .2,
+					            gradient: {.3: "#F2F1EF", 1: "#e67e22" }
+					            // "#F2784B"
+					        }).addTo(map)
+					        ;
+					        
+					//Let the D3 begin!    
+					 
+					//Start the svg			
+						map._initPathRoot()    
+					 
+					//Create Annotation Display
+						var annosvg = d3.select("#anno").append("svg").attr("width", 300).attr("height", 100);
+						var reviewsNum = annosvg.append("text");
+						var reviewsText = annosvg.append("text");
+					    var nameTextt = annosvg.append("text");
+					    
+					//Create Main Map/D3 SVG
+						var svg = d3.select("#map").select("svg"), g = svg.append("g").attr("id", "game");	g2 = svg.append("g");	
+							d3.json("growthcenters.geojson", function(datajson) {
+									datajson.features.forEach(function(d) {
+									d.LatLng = new L.LatLng(parseFloat(d.geometry.coordinates[1]),parseFloat(d.geometry.coordinates[0]));
+									})				
+								var feature = g.selectAll("circle")
+									   .data(datajson.features)
+									   .enter()
+									   .append("circle")
+									   .attr("type", function(d, i) { return datajson.features[i].properties.Typology; })
+					   				   .attr("name", function(d, i) { return datajson.features[i].properties.NAME; })
+									   .attr("class", "unselected game")
+									   .attr("r", 10)
+									   // .style("fill", "gray")
+									  
+										  ;	
+								
+
+									  
+								function update() {
+									  feature.attr("cx",function(d) { return map.latLngToLayerPoint(d.LatLng).x})
+									  feature.attr("cy",function(d) { return map.latLngToLayerPoint(d.LatLng).y})
+									  feature.style("opacity", function(d) { return .6})
+									  // d3.selectAll("text").attr("display", "none")
+									  ;
+
+									  }
+								map.on("viewreset", update);
+							update();
+					
+					var val = 0;
+					$('#pb').progressbar({value:val}).children('.ui-progressbar-value').html(val + '%').css("display", "block");
+							
+							
+					// Establish our dataset
+					var typeSet = [
+							"Corridor", "Downtown", "Traditional Village", "Commercial/Mixed-Use", "Hamlet", "Main Street", "Neighborhood", "New Village", "Transit Station Development", 
+					]
+					
+					var typeSet = typeSet.sort();
+					var types = d3.values(typeSet);
+					var dwarves = d3.keys(typeSet).sort();
+					
+					// Droppable items on the right
+					var draggables = d3.select(".draggables").append("ul");
+					draggables.selectAll("li").data(typeSet).enter()
+						.append("li")
+						.text(function(d) { return d })
+						.attr("id", function(d) {return })
+					
+					// Drop targets on the left
+					var canvas = d3.select(".droptargets").append("svg")
+						.attr("width",200)
+						.attr("height",400)
+						.attr("class","YlGn");
+					
+					var dropTargets = feature;
+					
+					// ---
+					// Handle dragging from HTML to dropping on SVG
+					// ---
+					var DragDropManager = {
+						dragged: null,
+						droppable: null,
+						dropped: null,
+						draggedMatchesTarget: function() {
+							if (!this.droppable) return false;
+							return (this.droppable.indexOf(this.dragged) >= 0);
+							;
+						}
+					}
+					
+					var body = d3.select("body");
+					
+					// Register the associated element as a potential target on mouseOver
+					// D3 events call listeners with the current datum
+					// and index, so this is straightforward.
+					
+					dropTargets.on('mouseover',function(d,i){
+						DragDropManager.droppable = datajson.features[i].properties.Typology; 
+						DragDropManager.dropped = d3.select(this)[0][0]; 
+						d3.select("#game").selectAll("text").remove();
+						d3.selectAll("circle").transition(250).style("opacity", ".6").attr("r", 10);
+						d3.select(this)
+							.transition()
+							.duration(600)
+							.ease("bounce")
+							.style("opacity", ".8")
+
+							.attr("r", 15);
+						var xPosG = 	parseFloat(d3.select(this).attr("cx")) + 7;
+						var yPosG = 	parseFloat(d3.select(this).attr("cy")) - 7;
+						tooltextt = g.append("text");
+					
+						
+									tooltextt
+										  .text( d3.select(this).attr("name"))
+										  .attr("text-anchor", "start")
+										  .attr("font-family", "sans-serif")
+										  .attr("font-size", "11px")
+										  .attr("font-weight", "bold")
+										  .attr("x", xPosG)
+					  					  .attr("y", yPosG)
+										  .style("display", "inherit")
+										  ;	
+						
+					});
+					
+					$("circle.game").click( function() {
+						console.log(this);
+						$(this).data('clicked', true);
+						d3.selectAll("circle").transition(250).style("opacity", ".6").attr("r", 10);
+						d3.select(this)
+							.transition()
+							.duration(600)
+							.ease("bounce")
+							.style("opacity", ".8")
+							.attr("r", 15);						
+						d3.select("#game").selectAll("text").remove();
+						var xPosG = 	parseFloat(d3.select(this).attr("cx")) + 7;
+						var yPosG = 	parseFloat(d3.select(this).attr("cy")) - 7;
+						tooltextt = g.append("text");
+									tooltextt
+										  .text( d3.select(this).attr("name"))
+										  .attr("text-anchor", "start")
+										  .attr("font-family", "sans-serif")
+										  .attr("font-size", "11px")
+										  .attr("font-weight", "bold")
+										  .attr("x", xPosG)
+					  					  .attr("y", yPosG)
+										  .style("display", "inherit")
+										  ;	
+					});
+					
+					// Clear the target from the DragDropManager on mouseOut.
+					dropTargets.on('mouseleave',function(e){
+						DragDropManager.droppable = null;
+						if ($(this).data('clicked')) {return} 
+						d3.select("#game").selectAll("text").remove();
+						d3.select(this).transition(1000).style("opacity", ".6").attr("r", 10);
+					
+					});
+					
+					// Set up jqueryUI's draggable on the list items
+					// 
+					// Note that we have to move helper out of the way of the cursor
+					// using the "cursorAt" property; otherwise the cursor will be 
+					// located over the helper and the SVG element's mouseover/mouseout
+					// events will not fire.
+					
+					$(".draggables li")
+						.click(function(){
+						var elementMatch = $(this).text().substr(0, 4);
+						console.log(elementMatch);
+						$("div#gamedetails").show();
+						$("div#gamedetails").children().hide();
+						$("div#"+elementMatch).toggle();
+					})
+						// .mouseover({
+						// var elementMatch = $(this).text().substr(0, 4);
+						// console.log(elementMatch);
+						// $("div#gamedetails").show();
+						// $("div#"+elementMatch).removeClass("hidden").addClass("shown").show();
+					// 
+					// })
+					
+					// $(".draggables li").mouseout(function(){
+						// var elementMatch = $(this).attr("");
+						// // $("div#"+elementMatch).removeClass("shown").addClass("hidden");
+					    // $("div#gamedetails").contents().hide();
+					// })
+					
+					
+					$(".draggables li").draggable({
+						revert: true,
+						revertDuration: 400,
+						cursorAt: { left: -5, top: -7 }, 
+					
+						// Register what we're dragging with the drop manager
+						start: function (e) {
+							// Getting the datum from the standard event target requires more work.
+							DragDropManager.dragged = d3.select(e.target).datum();
+							// console.log(DragDropManager.dragged);
+						},
+						// Set cursors based on matches, prepare for a drop
+						drag: function (e) {
+							matches = DragDropManager.draggedMatchesTarget();
+							body.style("cursor",function() {
+								return (matches) ? "copy" : "move";
+							});
+							// Eliminate the animation on revert for matches.
+							// We have to set the revert duration here instead of "stop"
+							// in order to have the change take effect.
+							$(e.target).draggable("option","revertDuration",(matches) ? 0 : 200)
+						},
+						// Handle the end state. For this example, disable correct drops
+						// then reset the standard cursor.
+						stop: function (e,ui) {
+							matches = DragDropManager.draggedMatchesTarget();			
+							console.log(DragDropManager.dropped);
+							// Dropped on a non-matching target.
+							if (!DragDropManager.draggedMatchesTarget()) {
+							// d3.select(DragDropManager.dropped).attr("class", "wrong").attr("r", 10);
+							$('#wrong').fadeIn(450).delay(1200).fadeOut(300)
+							}
+							if (matches) {
+							d3.select(DragDropManager.dropped).attr("class", "right");
+							$('#right').fadeIn(400).delay(1000).fadeOut(300);
+							val = val + 20;
+							console.log(val);
+							$('#pb').progressbar({value:val}).children('.ui-progressbar-value').html(val + '%').css("display", "block");
+							// $('#percent').text(val + "%");
+								if (val>99) {
+									$('#winner').fadeIn();
+								}
+					
+							}	
+						}
+					});
+					
+					
+					}) 
+					
+					
+					
+					
+					
+					
+					</script>		        
+				        
+				        
+				    </section>
+           
+        </div>
+ 
+    </div>
+ 
+        <footer>
+                <!-- footer content goes here -->
+        </footer>
+ 
+    </div>
+</div>
+	<script> 
+
+
+	
+    $('#nav').onePageNav({         // #nav must be the id of your navigation
+        currentClass: 'current',
+        changeHash: false,
+        scrollSpeed: 1000,          // change this parameter to adjust scrolling speed
+        scrollOffset: 30
+    });
+	</script>
+	</body>
+</html>

@@ -1,0 +1,575 @@
+<!DOCTYPE html >
+<html>
+<head>
+  <title>Rhode Island Growth Centers</title>
+  <meta charset="utf-8" />
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
+  <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+      <!-- <script src="/scripts/jquery-1.11.0.min.js"></script>     -->    <script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js?v1.2.4"></script>
+	<script src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js"></script>  
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7/leaflet.css"/>	  
+	<!-- <script src="http://codeorigin.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>     -->	
+	<script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="http://leaflet.github.io/Leaflet.heat/dist/leaflet-heat.js"> </script>
+    <script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js?v1.2.4"></script>
+	<link rel="stylesheet" type="text/css" href="map.css"> 
+    <script src="geotoarray.js"></script>
+  	<script src="plugins.js"></script>
+
+    
+		<link rel="stylesheet" type="text/css" href="layout.css"> 
+		<link rel="stylesheet" type="text/css" href="style.css"> 
+		<!-- <script type="text/javascript" src="http://cdn.leafletjs.com/leaflet-0.4.5/leaflet.js"></script> 
+		<script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js?v1.2.4"></script>
+		<script src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js"></script>     -->		
+		<script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
+		<script src="http://leaflet.github.io/Leaflet.heat/dist/leaflet-heat.js"> </script>
+		<script type="text/javascript" src="data/roads.js"></script> 
+		<script type="text/javascript" src="growthcenters.js"></script>
+		<script src="/data/totalJobsFactor30Array.js"></script>
+		<!-- <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script> -->
+	    <!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+		<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script> -->
+
+  
+</head>
+
+
+				 				    <section id="systems">
+					    <div class="innersidebar">
+							<h2>
+							Instructions
+							</h2>
+							<div id="sysintro" class="intro">Every community is different, and growth centers can support those different qualities. In 2013, participants from around the state played a game in which they identified which growth centers match different types of communities. See if you can match what they came up with! Hover over the text boxes to learn a bit about each growth center type. Then drag that text box onto the growth center that you think it matches. Keep going until you get 5 right! </div>
+								<button id="econo" class="concrete-flat-button">Economic</button>
+								
+								
+								<!-- Slider -->
+								
+								
+								<div id="econo" class="syssection">
+									
+									<div id="econotext">The economy. Jobs. Quality of life. All are critical components of the economic systems that support our region. By locating growth centers in areas that support a growing economy we can help shape the future of our state by encouraging vibrant, livable and economically diverse communities.</div>
+									
+									<div class="legend"><div id="sewerlegend" class="legendbox"></div><span class=bold>Utility Service Areas</span></div>
+									<p class="bold">Locations with <span id="ui-1text" display="inline">0</span><span id="ui-1" display="inline"></span>-<span id="ui-2text">10,000</span><span id="ui-2"></span> jobs within 1 mile </p>
+									<div id="scale"></div><p></p>
+								</div>
+								<button id="trans" class="concrete-flat-button">Transportation</button>	
+								<div id="trans" class="syssection">
+									<div id="transtext">Insert descriptive text</div>
+									
+									
+										<div class="legend"></div>
+									<svg height="100" width="200">
+									<rect x="10" y="10" width="25" height="15" fill="#E26A6A" /><text x="38" y="22" class="bold">Major Highways</text>
+									<rect x="10" y="30" width="25" height="15" fill="none" stroke= "gray" stroke-width="2" /><text x="38" y="42" class="bold">Other Roads</text>
+									<rect x="10" y="50" width="25" height="15" fill="#B88756" /><text x="38" y="62" class="bold">Rail</text>
+									<rect x="10" y="70" width="25" height="15" fill="steelblue" /><text x="38" y="82" class="bold">Port</text>
+									</svg>
+									
+									</div>
+								<button id="peopl" class="concrete-flat-button">People</button>	
+								<div id="peopl" class="syssection">
+									<div id="peopltext">Insert descriptive text</div>
+								</div>
+							</div>
+							
+							<div class="innerright"> 
+								<div id="sysMap"> <div class="leaflet-bottom leaflet-right"><div id="details" class="leaflet-control-attribution"></div></div></div>	
+							</div>
+						
+						
+						
+					<script>
+						//Showing the descriptive text
+					function sysMap() {
+						
+						
+						$("button").click(function(){
+
+							var id = this.id;
+							
+							var showing = "#" + id + ".syssection";
+								$('.syssection').hide("slow");
+								$(showing).toggle("slow");
+							
+															
+															
+							if (id == "econo") {	
+								d3.selectAll("#sewered").selectAll("path").transition().duration(1000).style("opacity",".5");
+								d3.selectAll("#sewered").transition().duration(4000).ease("bounce").style("opacity",".5");
+								d3.selectAll("circle, .systems").classed("transit", false).style("opacity",".8");	
+								d3.selectAll(".transit").style("opacity", "0");
+						 		d3.selectAll("circle, .systems").classed("jobs", true).transition().duration(1000).style("opacity",".8");
+						 		$("#details").hide();
+						 		
+						 				
+								// d3.selectAll(".transit").transition(1000).style("opacity","0");
+							}	
+								
+							if (id == "trans") {	
+												
+								
+								d3.selectAll("circle, .systems").classed("jobs", false).style("opacity","1");
+								d3.selectAll("path, .transit").transition(1000).style("opacity","1");
+								d3.selectAll("#sewered").transition(1000).style("opacity","0");
+								d3.selectAll("circle, .systems").classed("transit", true).transition(1000).style("opacity", ".8");
+								$("#details").hide();
+							}			
+							
+							if (id == "peopl") {	
+								d3.selectAll("#sewered").selectAll("path").transition().duration(1000).style("opacity","0");
+								d3.selectAll("#sewered").transition().duration(4000).ease("bounce").style("opacity","0");
+								d3.selectAll("circle, .systems").classed("transit", false).style("opacity",".8");	
+								d3.selectAll(".transit").style("opacity", "0");
+						 		d3.selectAll("circle, .systems").classed("jobs", true).transition().duration(1000).style("opacity",".8");
+						 		$("#details").hide();
+						 						
+								
+								
+							}	
+							})
+						
+						
+						var layer = L.tileLayer('http://a{s}.acetate.geoiq.com/tiles/acetate-hillshading/{z}/{x}/{y}.png', {
+							attribution: '&copy;2012 Esri & Stamen, Data from OSM and Natural Earth',
+							subdomains: '0123',
+							minZoom: 2,
+							maxZoom: 18
+						});
+					  
+							// var layer = new L.StamenTileLayer("toner-background");
+							var sysMap = new L.Map("sysMap", {
+							    center: new L.LatLng(41.7154364,-71.6171092),
+							    zoom: 10
+							});
+							sysMap.addLayer(layer);
+						
+						
+					    
+					     
+					   
+					        
+					//Let the D3 begin!    
+					 
+					//Start the svg			
+						sysMap._initPathRoot()   
+						
+					  
+					  var svgY = d3.select("#sysMap").select("svg"), 
+					  gY = svgY.append("g").attr("id", function() {return "sewered"});
+						d3.json("/data/SeweredAreas.geojson", function(collection) {
+						  var transform = d3.geo.transform({point: projectPoint}),
+						      path = d3.geo.path().projection(transform);
+						
+						  var featureY = gY.selectAll("path")
+						      .data(collection.features)
+						    .enter().append("path")
+						    ;
+						
+						  sysMap.on("viewreset", reset);
+						  reset();
+						
+						  // Reposition the SVG to cover the features.
+						  function reset() {
+						    var bounds = path.bounds(collection),
+						        topLeft = bounds[0],
+						        bottomRight = bounds[1];
+						
+						    // svgL .attr("width", bottomRight[0] - topLeft[0])
+						        // .attr("height", bottomRight[1] - topLeft[1])
+						        // .style("left", topLeft[0] + "px")
+						        // .style("top", topLeft[1] + "px");
+// 						
+						    // gL   .attr("transform", "translate(" + -topLeft[0] + "," + -topLeft[1] + ")");
+// 						
+						    featureY.attr("d", path).style("fill", "#ABB7B7").style("stroke-width", 1).style("stroke", "#22313F").style("opacity", 0);
+						  }
+						
+						  // Use Leaflet to implement a D3 geometric transformation.
+						  function projectPoint(x, y) {
+						    var point = sysMap.latLngToLayerPoint(new L.LatLng(y, x));
+						    this.stream.point(point.x, point.y);
+						  }
+						});
+						    gP = svgs.append("g").attr("class", function() {return "leaflet-zoom-hide" + " transit"});
+
+						var svgs = d3.select("#sysMap").select("svg"), g = svgs.append("g");	
+					  							//half circle effect
+							var grad = svgs.append("defs").append("linearGradient").attr("id", "grad")
+							         .attr("x1", "100%").attr("x2", "0%").attr("y1", "0%").attr("y2", "0%");
+										grad.append("stop").attr("offset", "50%").style("stop-color", "#E26A6A");
+										grad.append("stop").attr("offset", "50%").style("stop-color", "#B88756");
+										
+							var grad2 = svgs.append("defs").append("linearGradient").attr("id", "grad2")
+							         .attr("x1", "100%").attr("x2", "0%").attr("y1", "0%").attr("y2", "0%");
+										grad2.append("stop").attr("offset", "50%").style("stop-color", "steelblue");
+										grad2.append("stop").attr("offset", "50%").style("stop-color", "#E26A6A");
+							
+							var grad3 = svgs.append("defs").append("linearGradient").attr("id", "grad3")
+							         .attr("x1", "100%").attr("x2", "0%").attr("y1", "0%").attr("y2", "0%");
+										grad3.append("stop").attr("offset", "50%").style("stop-color", "#B88756");
+										grad3.append("stop").attr("offset", "50%").style("stop-color", "steelblue");
+				
+				var svgDetails = d3.select("#details").append("div").attr("width", 316).attr("height", 225).attr("class","detailstext");
+				var nameText = svgDetails.append("div").attr("class", "detailstext heading");
+				var econText = svgDetails.append("div").attr("class", "detailstext");
+				var tranText = svgDetails.append("div").attr("class", "detailstext");
+				var peopText = svgDetails.append("div").attr("class", "detailstext");
+				
+						d3.json("/data/GrowthCentersJobs.geojson", function(datajson) {
+									datajson.features.forEach(function(d) {
+									d.LatLng = new L.LatLng(parseFloat(d.geometry.coordinates[1]),parseFloat(d.geometry.coordinates[0]));
+									
+									})
+													
+							var gctransit = g.selectAll("circle")
+									   .data(datajson.features)
+									   .enter()
+									   .append("circle")
+									 
+									   .attr("type", function(d, i) { return datajson.features[i].properties.Typology; })
+					   				   .attr("name", function(d, i) { return datajson.features[i].properties.NAME; })
+					   				   .attr("class", function(d, i) { return (datajson.features[i].properties.Transit + " jobs systems"); })
+					   				   .attr("econtext", function(d, i) { return ("Economic: " + datajson.features[i].details.economic); })
+					   				   .attr("trantext", function(d, i) { return ("Transportation: " + datajson.features[i].details.transportation); })
+					   				   .attr("peoptext", function(d, i) { return ("People: " + datajson.features[i].details.people); })
+									   .attr("r", 10);
+									   
+									   gctransit.on("click", function(d) {
+										d3.selectAll("circle").transition(250).style("opacity", .6);
+										d3.selectAll(".tooltext").remove();
+										$(".detailstext").empty();
+											d3.select(this)
+												.transition(250)
+												.style("opacity", 1)
+											d3.select(!this)
+											.transition(250)
+											.style("opacity", .3)
+											var xPos = 	parseFloat(d3.select(this).attr("cx")) + 7;
+											var yPos = 	parseFloat(d3.select(this).attr("cy")) - 7;
+											tooltext = g.append("text");
+														tooltext
+															  .text( d3.select(this).attr("name"))
+															  .attr("class", "tooltext")
+															  .attr("text-anchor", "start")
+															  .attr("font-family", "sans-serif")
+															  .attr("font-size", "11px")
+															  .attr("font-weight", "bold")
+															  .attr("x", xPos)
+										  					  .attr("y", yPos)
+															  .style("display", "block")
+															  ;	
+											console.log($(this).attr("name"));
+											
+											nameText.append("text");	
+														nameText
+															  .text(d3.select(this).attr("name"))	
+															  .attr("width", 300)
+															  ;
+											
+											econText.append("text");	
+														econText
+															  .text(d3.select(this).attr("econtext"))	
+															  .attr("x", "15")
+										  					  .attr("y", "75")
+															  .style("display", "block")
+															  .style("visibility", "visible")
+															  .attr("width", 300)
+															  ;
+															  
+											tranText.append("text");	
+														tranText
+															  .text(d3.select(this).attr("trantext"))	
+															  .attr("visibility", "visible")
+															  .attr("x", "15")
+										  					  .attr("y", "160")
+															  .style("display", "block")
+															  .attr("width", 300)
+															  ;		
+											peopText.append("text");	
+														peopText
+															  .text(d3.select(this).attr("peoptext"))	
+															  .attr("visibility", "visible")
+															  .attr("x", 15)
+										  					  .attr("y", 155)
+															  .style("display", "block")
+															  .attr("width", 300)
+															  ;						  		  	
+											if ($(this).attr('name') == "DOWNTOWN WOONSOCKET" || $(this).attr('name') == "KNIGHTSVILLE" ||
+												$(this).attr('name') == "WARWICK STATION" || $(this).attr('name') == "POST ROAD" || 
+												$(this).attr('name') == "BRANCH VILLAGE" || $(this).attr('name') == "DOWNTOWN WESTERLY") 
+												
+											
+											 {
+												return $("#details").show();
+													   $("#details").contents().show();
+													   $(".detailstext").attr("visibility", "visible");
+													  
+												}
+												else {
+													return $("#details").hide();
+												};
+							
+						
+					
+				$(".draggables li")
+						.click(function(){
+						var elementMatch = $(this).text().substr(0, 4);
+						console.log(elementMatch);
+						$("div#gamedetails").show();
+						$("div#gamedetails").children().hide();
+						$("div#"+elementMatch).toggle();
+					})
+				
+									   });
+								
+								d3.transition()
+    .duration(750)
+    .delay(2000)
+    .ease("linear")
+    .each(function() {
+      d3.selectAll("circle").transition().duration(100).delay(
+      	function(d, i) { return (i * 50); })
+          .style("opacity", .6)
+    })
+  
+									
+								function update() {
+									  gctransit.attr("cx",function(d) { return sysMap.latLngToLayerPoint(d.LatLng).x})
+									  gctransit.attr("cy",function(d) { return sysMap.latLngToLayerPoint(d.LatLng).y})
+									  }								  
+									  
+								sysMap.on("viewreset", update);
+							update();
+						 		
+							// gctransit.on('mouseout',function(d){
+// 						
+						// if ($(this).data('clicked')) {return} 
+						// d3.select("text").remove();
+						// d3.select(this).transition(1000).attr("r", 10);
+					// });
+// 					
+
+						$("#scale").slider({
+							range: true,
+							min: 0, // there are 71 months between 1/1/04 and 12/31/09, 0 is all events
+							max: 60000, 
+							values: [0, 60000], //default slider value
+							// step: 100, // step is the allow increments the slider can move. 1 = one month
+							slide: function(event, ui, i) {
+							var sliderrange = [ui.values[0],ui.values[1]];
+							// handle case where slider at zero = show all events
+							// if(ui.value[1] == 0)
+							// {
+							// // highlight all explosion points
+							// d3.selectAll("circle, .systems")
+							// .style("display","block").style("opacity", 1);
+// 							
+							// // change the slider text to appropriate date
+							// d3.select("#slidertext")
+							// .text('Jobs within 1 Mile of Growth Center');
+// 							
+							// }else{
+// 							
+							d3.selectAll(".jobs").attr("display", function(d, i) {
+							  //Replace with the correct date comparison logic 
+							  return datajson.features[i].properties.TotalJobMi < sliderrange[1] && datajson.features[i].properties.TotalJobMi > sliderrange[0] ? "block" : "none";
+							});
+							
+							// get and format current slider value
+							d3.select("#ui-1text").remove();
+							d3.select("#ui-2text").remove();
+							d3.select("#ui-1").text(ui.values[0]);
+							d3.select("#ui-2").text(ui.values[1]);					
+							// change the slider text to appropriate date
+							// d3.select("#slidertext")
+							// .text('Attacks During ');
+							
+							}
+							});
+
+
+						})
+					    
+					   // $("circle").click( function() {
+						// d3.selectAll("text").remove();
+						// $(this).data('clicked', true);
+						// d3.selectAll("circle").transition(250);
+						// d3.select(this)
+							// .transition(250)
+							// .style("opacity", 1);
+						// var xPos = 	parseFloat(d3.select(this).attr("cx")) + 7;
+						// var yPos = 	parseFloat(d3.select(this).attr("cy")) - 7;
+						// tooltext = g.append("text");
+									// tooltext
+										  // .text( d3.select(this).attr("name"))
+										  // .attr("text-anchor", "start")
+										  // .attr("font-family", "sans-serif")
+										  // .attr("font-size", "11px")
+										  // .attr("font-weight", "bold")
+										  // .attr("x", xPos)
+					  					  // .attr("y", yPos)
+										  // .style("display", "inherit")
+										  // ;	
+											// detailsText = gDetails.append("text");	
+									// detailsText
+										  // .text(d3.select(this).attr("name"))	
+										  // .attr("text-anchor", "start")
+										  // .attr("font-family", "sans-serif")
+										  // .attr("font-size", "11px")
+										  // .attr("font-weight", "bold")
+										  // .attr("x", 15)
+					  					  // .attr("y", 15)
+										  // .style("display", "block")
+										  // ;		
+					// });
+					    
+					
+					
+					
+					    
+					    
+					//Create Main Map/D3 SVG
+						// var svgL = d3.select(sysMap.getPanes().markerPane).append("svg"),
+						    gL = svgs.append("g").attr("class", function() {return "leaflet-zoom-hide" + " transit"});
+
+						d3.json("/data/interstates.geojson", function(collection) {
+						  var transform = d3.geo.transform({point: projectPoint}),
+						      path = d3.geo.path().projection(transform);
+						
+						  var feature = gL.selectAll("path")
+						      .data(collection.features)
+						    .enter().append("path");
+						
+						  sysMap.on("viewreset", reset);
+						  reset();
+						
+						  // Reposition the SVG to cover the features.
+						  function reset() {
+						    var bounds = path.bounds(collection),
+						        topLeft = bounds[0],
+						        bottomRight = bounds[1];
+						
+						    // svgL .attr("width", bottomRight[0] - topLeft[0])
+						        // .attr("height", bottomRight[1] - topLeft[1])
+						        // .style("left", topLeft[0] + "px")
+						        // .style("top", topLeft[1] + "px");
+// 						
+						    // gL   .attr("transform", "translate(" + -topLeft[0] + "," + -topLeft[1] + ")");
+// 						
+						    feature.attr("d", path).style("fill","none").style("stroke-width", 2).style("stroke", "#E26A6A").style("opacity", 0);
+						  }
+						
+						  // Use Leaflet to implement a D3 geometric transformation.
+						  function projectPoint(x, y) {
+						    var point = sysMap.latLngToLayerPoint(new L.LatLng(y, x));
+						    this.stream.point(point.x, point.y);
+						  }
+						});
+						
+
+						
+						d3.json("/data/Rail.geojson", function(collection) {
+						  var transform = d3.geo.transform({point: projectPoint}),
+						      path = d3.geo.path().projection(transform);
+						
+						  var feature = gL.selectAll("path")
+						      .data(collection.features)
+						    .enter().append("path");
+						
+						  sysMap.on("viewreset", reset);
+						  reset();
+						
+						  // Reposition the SVG to cover the features.
+						  function reset() {
+						    var bounds = path.bounds(collection),
+						        topLeft = bounds[0],
+						        bottomRight = bounds[1];
+						
+						    // svgL .attr("width", bottomRight[0] - topLeft[0])
+						        // .attr("height", bottomRight[1] - topLeft[1])
+						        // .style("left", topLeft[0] + "px")
+						        // .style("top", topLeft[1] + "px");
+// 						
+						    // gL   .attr("transform", "translate(" + -topLeft[0] + "," + -topLeft[1] + ")");
+// 						
+						    feature.attr("d", path).style("fill","none").style("stroke-width", 3).style("stroke", "#B88756").style("opacity", 0);
+						  }
+						
+						  // Use Leaflet to implement a D3 geometric transformation.
+						  function projectPoint(x, y) {
+						    var point = sysMap.latLngToLayerPoint(new L.LatLng(y, x));
+						    this.stream.point(point.x, point.y);
+						  }
+							});
+
+
+						d3.json("/data/PopChangeTract.geojson", function(collection) {
+						  var transform = d3.geo.transform({point: projectPoint}),
+						      path = d3.geo.path().projection(transform);
+						
+						  var feature = gP.selectAll("path")
+						      .data(collection.features)
+						    .enter().append("path");
+						
+						  sysMap.on("viewreset", reset);
+						  reset();
+						
+						  // Reposition the SVG to cover the features.
+						  function reset() {
+						    var bounds = path.bounds(collection),
+						        topLeft = bounds[0],
+						        bottomRight = bounds[1];
+						
+						    // svgL .attr("width", bottomRight[0] - topLeft[0])
+						        // .attr("height", bottomRight[1] - topLeft[1])
+						        // .style("left", topLeft[0] + "px")
+						        // .style("top", topLeft[1] + "px");
+// 						
+						    // gL   .attr("transform", "translate(" + -topLeft[0] + "," + -topLeft[1] + ")");
+// 						
+						    feature.attr("d", path).style("fill", 
+						    	function(d,i) {
+						    		if (collection.features[i].properties.PctChg < 0) {
+						    			return "#FFECEC"}
+						    		else if (collection.features[i].properties.PctChg >= 0 && collection.features[i].properties.PctChg < 10 ) {
+						    			return "blue"
+						    		};
+						    		
+						    	}
+						    	
+						    	
+						    	).style("stroke-width", 2).style("stroke", "none").style("opacity", 1);
+						  }
+						
+						  // Use Leaflet to implement a D3 geometric transformation.
+						  function projectPoint(x, y) {
+						    var point = sysMap.latLngToLayerPoint(new L.LatLng(y, x));
+						    this.stream.point(point.x, point.y);
+						  }
+						});
+
+
+						
+
+						
+					
+					
+					};		
+					
+					
+					
+					
+			
+					
+						
+					
+					sysMap();
+					
+					
+					</script>
+						
+				    </section>

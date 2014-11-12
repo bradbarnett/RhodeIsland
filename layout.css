@@ -1,0 +1,77 @@
+#main {
+  width: 960px;
+  margin: 0 auto;
+  margin-top: 10px;
+}
+ 
+#leftSide {
+  float: left;
+  width: 100px;
+  position: fixed;
+  left: 5px;
+  top: 12%;
+}
+ 
+#rightSide {
+  width: 900px;
+  float: left;
+}
+ 
+footer {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  padding: 0 10px 10px 0;
+  display: none;
+}
+
+
+#sidebar{
+	width: 300px;
+	display:inline;
+}
+
+section {
+  min-height: 500px;
+  margin-bottom: 500px;
+}
+
+.innersidebar{
+	width:300px;
+	float:left;
+}
+
+#gamedetails {
+	width: 290px;
+	float: left;
+	display:block;
+}
+
+#pb {
+	/*float: right;*/
+	margin-top: 10px;
+	margin-right: 5px;
+	width: 250px;
+	height: 20px;
+	display: block;
+	opacity: .9;
+	color: #F2784B;
+	
+}
+
+.intro {
+	width: 260px;
+	padding: 3px 7px 7px 7px;
+
+	
+}
+
+.innerright{
+	width: 600px;
+	float:left;
+}
+
+#scale {
+	width: 250px;
+	margin-left: 10px;
+}
